@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Video with Cookie Consent</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+        .image-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5); /* Optional: Add transparency to see video underneath */
+        }
+        .image-overlay img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .cookie-consent {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 24px;
+            text-align: center;
+        }
+        .button-container {
+            text-align: center;
+        }
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .hidden {
+            display: none;
+        }
+        .link-button {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #FF0000;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: none;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 4;
+        }
+    </style>
+</head>
+<body>
+
+<video id="backgroundVideo" class="background-video" loop muted>
+    <source src="Rick.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<div id="imageOverlay" class="image-overlay">
+    <img src="blog.png" alt="Overlay Image">
+</div>
+
+<div id="cookieConsent" class="cookie-consent">
+    <div class="button-container">
+        <p>We would like to show you some cookies🍪</p>
+        <button class="button" onclick="acceptCookies()">yep</button>
+        <button class="button" onclick="acceptCookies()">nope</button>
+    </div>
+</div>
+
+<a id="youtubeLinkButton" class="link-button" href="https://chilltide.github.io/birthday1/" target="_blank">real card is here</a>
+
+<script>
+    function acceptCookies() {
+        var video = document.getElementById('backgroundVideo');
+        video.muted = false; // Unmute the video
+        video.play();
+        document.getElementById('cookieConsent').classList.add('hidden');
+        document.getElementById('imageOverlay').classList.add('hidden');
+        
+        setTimeout(function() {
+            document.getElementById('youtubeLinkButton').style.display = 'inline-block';
+        }, 14000); // 14 seconds
+    }
+</script>
+
+</body>
+</html>
